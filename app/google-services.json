@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "938169781607",
+    "project_id": "chat-rio-bae75",
+    "storage_bucket": "chat-rio-bae75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938169781607:android:5af6b0f1ef6946621d33c2",
+        "android_client_info": {
+          "package_name": "com.example.mychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "938169781607-9d4v8lkgj4ibu015drp3p73fj7c5c68v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8HcWyoR0wFveANn37f7dAs8Vx4kAvjhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "938169781607-9d4v8lkgj4ibu015drp3p73fj7c5c68v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
