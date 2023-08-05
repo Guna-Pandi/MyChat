@@ -3,4 +3,5 @@
         <item name="colorPrimary">@color/primary_dark</item>
         <item name="android:statusBarColor">@color/primary_dark</item>
     </style>
+
 </resources>

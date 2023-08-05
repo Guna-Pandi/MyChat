@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:overScrollMode="never"
+    android:background="@color/backgrd2"
     android:padding="@dimen/_24sdp"
     android:scrollbars="none"
     tools:context=".activites.SignUpActivity">
@@ -58,7 +59,8 @@
             android:inputType="text"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/secondary_text"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/_13ssp"
             tools:ignore="InvalidId" />
 
@@ -74,7 +76,8 @@
             android:inputType="textEmailAddress"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/secondary_text"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/_13ssp"
             tools:ignore="InvalidId" />
 
@@ -90,7 +93,8 @@
             android:inputType="textPassword"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/secondary_text"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/_13ssp"
             tools:ignore="InvalidId" />
 
@@ -106,7 +110,8 @@
             android:inputType="textPassword"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/secondary_text"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/_13ssp"
             tools:ignore="InvalidId" />
         <FrameLayout

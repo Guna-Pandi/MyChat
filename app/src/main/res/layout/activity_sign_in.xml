@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:overScrollMode="never"
+    android:background="@color/backgrd2"
     android:padding="@dimen/_24sdp"
     android:scrollbars="none"
     tools:context=".activites.SignInActivity">
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
             android:text="@string/login_to_continue"
-            android:textColor="@color/secondary_text"
+            android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
             />
@@ -47,6 +48,7 @@
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
             android:textColor="@color/primary_text"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/_13ssp"
             tools:ignore="InvalidId" />
 
@@ -63,6 +65,7 @@
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
             android:textColor="@color/primary_text"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/_13ssp"
             tools:ignore="InvalidId" />
 
