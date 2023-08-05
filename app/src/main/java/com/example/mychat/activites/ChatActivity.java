@@ -106,6 +106,30 @@ public class ChatActivity extends BaseActivity{
             conversion.put(Constants.KEY_TIMESTAMP,new Date());
             addConversion(conversion);
         }
+        if(!isReceiverAvailable) {
+
+            try {
+
+                JSONArray tokens= new JSONArray();
+                tokens.put(receivedUser.token);
+
+                JSONObject data= new JSONObject();
+                data.put(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+                data.put(Constants.KEY_NAME, preferenceManager.getString(Constants.KEY_NAME));
+                data.put(Constants.KEY_FCM_TOKEN, preferenceManager.getString(Constants.KEY_FCM_TOKEN));
+                data.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+
+                JSONObject body= new JSONObject();
+
+                body.put(Constants.REMOTE_MSG_DATA, data);
+                body.put(Constants.REMOTE_MSG_REGISTRATION_IDS, tokens);
+
+                sendNotification (body.toString());
+
+            } catch (Exception exception) {
+                showToast(exception.getMessage());
+            }
+        }
         binding.inputMessage.setText(null);
     }
 
