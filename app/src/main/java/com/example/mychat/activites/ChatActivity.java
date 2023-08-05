@@ -8,12 +8,15 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.mychat.R;
 import com.example.mychat.adapters.ChatAdapter;
 import com.example.mychat.databinding.ActivityChatBinding;
 import com.example.mychat.models.ChatMessage;
 import com.example.mychat.models.User;
+import com.example.mychat.network.ApiClient;
+import com.example.mychat.network.ApiServer;
 import com.example.mychat.utilities.Constants;
 import com.example.mychat.utilities.PreferenceManager;
 import com.google.android.gms.tasks.NativeOnCompleteListener;
@@ -25,6 +28,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,7 +46,12 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.locks.Condition;
 
-public class ChatActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
+public class ChatActivity extends BaseActivity{
     private ActivityChatBinding binding;
     private User receivedUser;
     private List<ChatMessage> chatMessages;
@@ -46,6 +59,8 @@ public class ChatActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private String conversionId = null;
+    private Boolean isReceiverAvailable = false;
+
 
 
     @Override
@@ -93,6 +108,69 @@ public class ChatActivity extends AppCompatActivity {
         }
         binding.inputMessage.setText(null);
     }
+
+    private void showToast(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+    }
+    private void sendNotification(String messageBody){
+        ApiClient.getClient().create(ApiServer.class).sendMessage(
+                Constants.getRemoteMsgHeader(),
+                messageBody
+        ).enqueue(new Callback<String>(){
+
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                if(response.isSuccessful()){
+                    try{
+                        if (response.body() != null){
+                            JSONObject reponseJson =new JSONObject(response.body());
+                            JSONArray results = reponseJson.getJSONArray("Results");
+                            if (reponseJson.getInt("Failure")==1){
+                                JSONObject errror = (JSONObject) results.get(0);
+                                showToast(errror.getString("Error"));
+                                return;
+                            }
+                        }
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+                    showToast("Notification sent Successfully ");
+                }else {
+                    showToast("Error: "+response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call,@NonNull Throwable t) {
+                showToast(t.getMessage());
+            }
+        });
+    }
+
+    private void listenAvailabilityOfReveiver(){
+        database.collection(Constants.KEY_COLLECTION_USERS).document(
+                receivedUser.id
+        ).addSnapshotListener(ChatActivity.this,(value, error) -> {
+            if(error !=null){
+                return;
+            }
+        if(value != null){
+            if(value.getLong(Constants.KEY_AVAILABILITY) !=null){
+                int availability = Objects.requireNonNull(
+                        value.getLong(Constants.KEY_AVAILABILITY)
+                ).intValue();
+                isReceiverAvailable = availability ==1;
+            }
+            receivedUser.token = value.getString(Constants.KEY_FCM_TOKEN);
+        }
+        if(isReceiverAvailable){
+            binding.textAvailability.setVisibility(View.VISIBLE);
+        }else {
+            binding.textAvailability.setVisibility(View.GONE);
+        }
+        });
+    }
+
 
     private  void listenMessages(){
         database.collection(Constants.KEY_COLLECTION_CHAT)
@@ -193,4 +271,10 @@ public class ChatActivity extends AppCompatActivity {
             conversionId = documentSnapshot.getId();
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listenAvailabilityOfReveiver();
+    }
 }

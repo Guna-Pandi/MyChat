@@ -1,6 +1,5 @@
 package com.example.mychat.activites;
 
-import static com.google.android.material.color.utilities.MaterialDynamicColors.error;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,8 +8,6 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.mychat.adapters.RecentConversationsAdapter;
 import com.example.mychat.databinding.ActivityMainBinding;
 import com.example.mychat.listeners.ConversionListener;
@@ -25,13 +22,12 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ConversionListener {
+public class MainActivity extends BaseActivity implements ConversionListener {
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
     private List<ChatMessage> conversations;
