@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:overScrollMode="never"
-    android:background="@color/backgrd2"
+    android:background="@drawable/backredrev"
     android:padding="@dimen/_24sdp"
     android:scrollbars="none"
     tools:context=".activites.SignUpActivity">
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             android:text="@string/create_new_account"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/white"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
             />
@@ -127,6 +127,9 @@
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
                 app:cornerRadius="@dimen/_8sdp"
+                app:strokeColor="@color/error"
+                android:backgroundTint="@color/black"
+                app:strokeWidth="2dp"
                 />
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -144,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/sign_in"
-            android:textColor="@color/primary"
+            android:textColor="@color/white"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold"
             />

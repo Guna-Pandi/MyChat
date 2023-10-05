@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:overScrollMode="never"
-    android:background="@color/backgrd2"
+    android:background="@drawable/backred"
     android:padding="@dimen/_24sdp"
     android:scrollbars="none"
     tools:context=".activites.SignInActivity">
@@ -19,9 +19,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:text="@string/welcome_back"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/white"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
             />
@@ -68,23 +68,77 @@
             android:textColorHint="@color/black"
             android:textSize="@dimen/_13ssp"
             tools:ignore="InvalidId" />
+        <EditText
+            android:id="@+id/inputMobile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/background_input"
+            android:hint="Mobile No"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:paddingStart="@dimen/_16sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/_13ssp"
+            tools:ignore="InvalidId" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:animateLayoutChanges="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSend"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:backgroundTint="@color/black"
+                android:onClick="registerbtn"
+                android:text="Send"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13ssp"
+                app:strokeColor="@color/error"
+                app:strokeWidth="2dp"
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/_8sdp" />
+        </FrameLayout>
+        <EditText
+            android:id="@+id/inputOtp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/background_input"
+            android:hint="OTP"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/_16sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/_13ssp"
+            tools:ignore="InvalidId" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:animateLayoutChanges="true">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:text="@string/sign_in"
+                android:text="Verify-Sign In"
                 android:textColor="@color/white"
+                android:backgroundTint="@color/black"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
                 app:cornerRadius="@dimen/_8sdp"
+                app:strokeColor="@color/error"
+                app:strokeWidth="2dp"
                 />
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -102,9 +156,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="@string/create_new_account"
-            android:textColor="@color/primary"
+            android:textColor="@color/white"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold"
+
             />
 
     </LinearLayout>
