@@ -59,6 +59,9 @@ public class MainActivity extends BaseActivity implements ConversionListener {
         binding.fabNewChat.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), UsersActivity.class));
         });
+        binding.location.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Location.class));
+        });
     }
 
     private void loadUserDetails(){
